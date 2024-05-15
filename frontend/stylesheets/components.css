@@ -1,0 +1,5 @@
+@import '../components/displayBox/displayBox.css';
+@import '../components/checkbox/checkbox.css';
+@import '../components/tiles/educationTiles/educationTiles.css';
+@import '../components/tiles/experienceTiles/experienceTiles.css';
+@import '../components/tiles/skillsTiles/skillsTiles.css';

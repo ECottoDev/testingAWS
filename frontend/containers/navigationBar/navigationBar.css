@@ -1,0 +1,42 @@
+.navigationBar_view {
+    display: grid;
+
+}
+
+.navigationBar_homeIcon {
+    grid-area: 1/1/1/1;
+    height: 5rem;
+    width: 7rem;
+    cursor: pointer;
+    fill: var(--theme_color_icons);
+}
+
+.navigationBar_homeIcon:hover {
+    fill: var(--red);
+    transition: none;
+}
+
+.navigationBar_webPageIcon {
+    grid-area: 1/2/1/2;
+    height: 5rem;
+    width: 7rem;
+    cursor: pointer;
+    fill: none;
+    stroke: var(--theme_color_icons);
+    stroke-width: 0.5rem;
+}
+
+.navigationBar_webPageIcon:hover {
+    stroke: var(--red);
+    transition: none;
+}
+
+.navigationBar_brandText {
+    grid-area: 2/2/2/2;
+}
+
+.navigationBar_homeText {
+    justify-self: center;
+    grid-area: 2/1/2/1;
+
+}

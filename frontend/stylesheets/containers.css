@@ -1,0 +1,10 @@
+@import '../containers/navigationBar/navigationBar.css';
+@import '../containers/educationHistory/educationHistory.css';
+@import '../containers/addEducation/addEducation.css';
+@import '../containers/addExperience/addExperience.css';
+@import '../containers/workExperience/workExperience.css';
+@import '../containers/updateEducation/updateEducation.css';
+@import '../containers/updateExperience/updateExperience.css';
+@import '../containers/skills/skills.css';
+@import '../containers/addSkill/addSkill.css';
+@import '../containers/updateSkills/updateSkills.css';
