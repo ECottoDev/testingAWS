@@ -7,7 +7,8 @@
 * @version 2024-May-14 initial version
 */
 
-import { addClasses, appendChildren, createElementContainer, createHeadingText, createPillBox, getDateObj } from "../../../helpers/basicElements.js";
+import { addClasses, appendChildren, createElementContainer, createHeadingText, createPillBox, detachChildren, getDateObj } from "../../../helpers/basicElements.js";
+import { CardTile } from "../../components/tiles/cardTile/CardTile.js";
 import { getBudgetData } from "../../databaseCallers/budgetDataCalls.js";
 
 export class BudgetView {
@@ -22,7 +23,7 @@ export class BudgetView {
         console.log(this.budgetList);
         this.setView();
     }
-    setView() {
+	   setView() {
         appendChildren(this.view, [(
             appendChildren(addClasses(createElementContainer(), 'budgetView_topContainer'), [
                 addClasses(createHeadingText(`Available budget in ${this.date.month}`), 'budgetView_heading'),
@@ -32,11 +33,12 @@ export class BudgetView {
             addClasses(createHeadingText('Budget Cards'), 'budgetView_heading'),
             appendChildren(addClasses(createElementContainer(), 'budgetView_cardContainer'), [
                 ...this.budgetList.map((card) => {
-                    return addClasses(createElementContainer(), 'budgetView_card');
+                    return new CardTile(this.parentProps, card, ()=>{detachChildren(this.view); this.fetch();}).view;
                 })
             ])
         ]),
         ]);
 
     }
+
 }

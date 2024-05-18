@@ -147,9 +147,9 @@ router.get('/budget/getBank', (req, res) => {
 );
 
 //update
-router.patch('/budget/update', (request, response) => {
+router.patch('/budget/updateCard', (request, response) => {
     const { CardID, amountDue } = request.body;
-    const result = budgetDB.updateNameById(CardID, amountDue);
+    const result = budgetDB.updateCard(CardID, amountDue);
 
     result
         .then(data => response.json({ success: data }))

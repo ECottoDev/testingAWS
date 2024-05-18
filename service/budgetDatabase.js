@@ -67,7 +67,7 @@ class BudgetDatabase {
             console.log(err);
         }
     }
-    async updateNameById(id, amountDue) {
+    async updateCard(id, amountDue) {
         try {
             id = parseInt(id, 10);
             const response = await new Promise((resolve, reject) => {

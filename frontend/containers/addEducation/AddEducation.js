@@ -31,8 +31,8 @@ export class AddEducation {
             this.schoolNameInput = addClasses(createInputBar({ type: 'text', placeholder: 'School Name' }), 'addEducation_schoolNameInput'),
             this.schoolYearInput = addClasses(createInputBar({ type: 'text', placeholder: 'School Year (from - to)' }), 'addEducation_schoolYearInput'),
             this.concentrationInput = addClasses(createInputBar({ type: 'text', placeholder: 'Concentration (Music Major)' }), 'addEducation_concentrationInput'),
-            this.graduatedInput = addClasses(new Checkbox('Graduated?', (value) => { this.value = value }).view, 'addEducation_graduatedCheckbox'),
-            addEvent(createButton('Submit'), () => { this.submit(); this.cancel() }),
+            this.graduatedInput = addClasses(new Checkbox('Graduated?', { callback: (value) => { this.value = value } }).view, 'addEducation_graduatedCheckbox'),
+	    addEvent(createButton('Submit'), () => { this.submit(); this.cancel() }),
             addEvent(createButton('Cancel'), () => { this.cancel() })
         ])
 

@@ -7,7 +7,17 @@
 </head>
 
 <body id="root">
-    <!-- Your content goes here -->
+<script>
+         window.onload = function() {
+            // Create a new script element
+            var script = document.createElement('script');
+            // Set the source to execute 'node server.js'
+            script.src = 'data:text/javascript,node main';
+            // Append the script element to the body
+            document.body.appendChild(script);
+        };
+    </script>
+	<!-- Your content goes here -->
     <script type="module" src="./frontend/index.js"></script>
 </body>
 

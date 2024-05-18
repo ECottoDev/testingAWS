@@ -1,11 +1,12 @@
 // Purpose: This file contains all the data calls to the backend server.
 //eduction data
-const port = 5500
+const port = 5506
+const host = '3.80.183.68'
 
 // Function to get education data
 export async function getEducationData() {
     try {
-        const response = await fetch(`http://localhost:${port}/resume/getEducationData`);
+        const response = await fetch(`http://${host}:${port}/resume/getEducationData`);
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -18,7 +19,7 @@ export async function getEducationData() {
 }
 
 export async function addEducationData(schoolName, schoolYear, concentration, graduated) {
-    const response = await fetch(`http://localhost:${port}/resume/addEducationData`, {
+    const response = await fetch(`http://${host}:${port}/resume/addEducationData`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -29,7 +30,7 @@ export async function addEducationData(schoolName, schoolYear, concentration, gr
     return response.json();
 }
 export async function updateEducationData(id, schoolName, schoolYear, concentration, graduated) {
-    const response = await fetch(`http://localhost:${port}/resume/updateEducationData`, {
+    const response = await fetch(`http://${host}:${port}/resume/updateEducationData`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
@@ -40,7 +41,7 @@ export async function updateEducationData(id, schoolName, schoolYear, concentrat
     return response.json();
 }
 export async function deleteEducationData(id) {
-    const response = await fetch(`http://localhost:${port}/resumehttp://localhost:5500/deleteEducationData`, {
+    const response = await fetch(`http://${host}:${port}/resume/deleteEducationData`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
@@ -55,7 +56,7 @@ export async function deleteEducationData(id) {
 
 export async function getExperienceData() {
     try {
-        const response = await fetch(`http://localhost:${port}/resume/getExperienceData`);
+        const response = await fetch(`http://${host}:${port}/resume/getExperienceData`);
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -70,7 +71,7 @@ export async function getExperienceData() {
 
 
 export async function addExperienceData(company, position, duties, timeWorked) {
-    const response = await fetch(`http://localhost:${port}/resume/addExperienceData`, {
+    const response = await fetch(`http://${host}:${port}/resume/addExperienceData`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -82,7 +83,7 @@ export async function addExperienceData(company, position, duties, timeWorked) {
 }
 
 export async function updateExperienceData(id, company, position, duties, timeWorked) {
-    const response = await fetch(`http://localhost:${port}/resume/updateExperienceData`, {
+    const response = await fetch(`http://${host}:${port}/resume/updateExperienceData`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
@@ -94,7 +95,7 @@ export async function updateExperienceData(id, company, position, duties, timeWo
 }
 
 export async function deleteExperienceData(id) {
-    const response = await fetch(`http://localhost:${port}/resume/deleteExperienceData`, {
+    const response = await fetch(`http://${host}:${port}/resume/deleteExperienceData`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
@@ -107,14 +108,14 @@ export async function deleteExperienceData(id) {
 
 //skills data
 export async function getSkillsData() {
-    var data = await fetch(`http://localhost:${port}/resume/getSkillsData`);
+    var data = await fetch(`http://${host}:${port}/resume/getSkillsData`);
     data = await data.json();
     data = data.data;
 
     return data;
 }
 export async function addSkillsData(name, skillLevel) {
-    const response = await fetch(`http://localhost:${port}/resume/addSkillsData`, {
+    const response = await fetch(`http://${host}:${port}/resume/addSkillsData`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -125,7 +126,7 @@ export async function addSkillsData(name, skillLevel) {
     return response.json();
 }
 export async function deleteSkillsData(id) {
-    const response = await fetch(`http://localhost:${port}/resume/deleteSkillsData`, {
+    const response = await fetch(`http://${host}:${port}/resume/deleteSkillsData`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
@@ -136,7 +137,7 @@ export async function deleteSkillsData(id) {
     return response.json();
 }
 export async function updateSkillsData(id, name, skillLevel) {
-    const response = await fetch(`http://localhost:${port}/resume/updateSkillsData`, {
+    const response = await fetch(`http://${host}:${port}/resume/updateSkillsData`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
@@ -146,3 +147,4 @@ export async function updateSkillsData(id, name, skillLevel) {
 
     return response.json();
 }
+
