@@ -21,7 +21,9 @@ export class NavigationBar {
             addEvent(addClasses(createSVGButton('frontend/assets/icons/Home.svg'), 'navigationBar_homeIcon'), () => { this.parentProps.setNavState(routes.HOME_VIEW) }),
             addClasses(createHeadingText('Home'), 'navigationBar_homeText'),
             addEvent(addClasses(createSVGButton('frontend/assets/icons/WebPage.svg'), 'navigationBar_webPageIcon'), () => { this.parentProps.setNavState(routes.BUDGET_VIEW) }),
-            addClasses(createHeadingText('Brand Page'), 'navigationBar_brandText'),
+            addClasses(createHeadingText('Budget Page'), 'navigationBar_brandText'),
+            addEvent(addClasses(createSVGButton('frontend/assets/icons/WebPage.svg'), 'navigationBar_polyPageIcon'), () => { this.parentProps.setNavState(routes.POlY_VIEW) }),
+            addClasses(createHeadingText('Poly Roster Page'), 'navigationBar_polyText'),
         ]);
     }
 }

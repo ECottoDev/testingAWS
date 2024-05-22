@@ -35,7 +35,8 @@ export class Index {
                 this.navBar = addClasses(new NavigationBar(this.appProps).view, 'index_navBar'),
                 addClasses(createHeadingText('Edwin Cotto Resume', { bold: true }), 'index_heading'),
                 addClasses(createHeadingText('Full Stack Developer\n', { italic: true }), 'index_heading2'),
-                addClasses(createHeadingText(toPhoneFormat('7875858791')))]),
+                //addClasses(createHeadingText(toPhoneFormat('7875858791')))
+		    ]),
             this.container,
         ]);
         this.setNavState(this.navState, this.setParams());
