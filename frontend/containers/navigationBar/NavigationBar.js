@@ -7,7 +7,7 @@
 * @version 2024-February-03 initial version
 */
 
-import { addClasses, addEvent, appendChildren, createElementContainer, createHeadingText, createImgButton, createSVGButton } from "../../../helpers/basicElements.js";
+import { addClasses, addEvent, appendChildren, detachChildren, createElementContainer, createHeadingText, createImgButton, createSVGButton } from "../../../helpers/basicElements.js";
 import { routes } from "../../../helpers/router.js";
 
 export class NavigationBar {
@@ -22,7 +22,7 @@ export class NavigationBar {
             addClasses(createHeadingText('Home'), 'navigationBar_homeText'),
             addEvent(addClasses(createSVGButton('frontend/assets/icons/WebPage.svg'), 'navigationBar_webPageIcon'), () => { this.parentProps.setNavState(routes.BUDGET_VIEW) }),
             addClasses(createHeadingText('Budget Page'), 'navigationBar_brandText'),
-            addEvent(addClasses(createSVGButton('frontend/assets/icons/WebPage.svg'), 'navigationBar_polyPageIcon'), () => { this.parentProps.setNavState(routes.POlY_VIEW) }),
+            addEvent(addClasses(createSVGButton('frontend/assets/icons/WebPage.svg'), 'navigationBar_polyPageIcon'), () => { this.parentProps.setNavState(routes.POLY_VIEW) }),
             addClasses(createHeadingText('Poly Roster Page'), 'navigationBar_polyText'),
         ]);
     }

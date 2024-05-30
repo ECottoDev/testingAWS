@@ -5,6 +5,7 @@ import { DisplayBox } from "./components/displayBox/DisplayBox.js";
 import { NavigationBar } from "./containers/navigationBar/NavigationBar.js";
 import { BudgetView } from "./views/budgetView/BudgetView.js";
 import { ResumeView } from "./views/resumeView/ResumeView.js";
+import { BrandView } from "./views/brandView/BrandView.js";
 
 window.onload = async () => { appendChildren(document.getElementById('root'), [new Index().view]); }
 
@@ -48,7 +49,8 @@ export class Index {
         this.navigation = {
             [routes.HOME_VIEW]: () => new ResumeView(this.appProps).view,
             [routes.BUDGET_VIEW]: () => new BudgetView(this.appProps).view,
-        }
+            [routes.POLY_VIEW]: () => new BrandView(this.appProps).view, 
+	}
     }
     /**
      * helps to direct the user to another page
