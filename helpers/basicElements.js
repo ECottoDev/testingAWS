@@ -562,7 +562,8 @@ export function uuIdv4() {
  * @returns parse url
  */
 export function parseRequestURL() {
-    return location.hash.toLowerCase() || '/';
+    //return location.hash.toLowerCase() || '/';// if using only lowercase hash
+    return location.hash || '/';
 }
 /**
  * 

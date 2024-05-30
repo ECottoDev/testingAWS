@@ -3,9 +3,10 @@ import { addClasses, addEvent, appendChildren, createButton, createElementContai
 import { routes } from "../helpers/router.js";
 import { DisplayBox } from "./components/displayBox/DisplayBox.js";
 import { NavigationBar } from "./containers/navigationBar/NavigationBar.js";
+import { BrandView } from "./views/brandView/BrandView.js";
 import { BudgetView } from "./views/budgetView/BudgetView.js";
 import { ResumeView } from "./views/resumeView/ResumeView.js";
-import { BrandView } from "./views/brandView/BrandView.js";
+
 
 window.onload = async () => { appendChildren(document.getElementById('root'), [new Index().view]); }
 
