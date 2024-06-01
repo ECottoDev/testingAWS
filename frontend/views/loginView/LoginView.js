@@ -30,6 +30,6 @@ export class LoginView {
 
     async submitLogin() {
         //await systemLogin(this.username.value, this.password.value);
-        await getUsers();
+        console.log(await getUsers());
     }
 }
