@@ -1,5 +1,7 @@
 const mysql = require('mysql');
 const dotenv = require('dotenv');
+const bcrypt = require('bcrypt'); // Ensure bcrypt is required
+
 dotenv.config();
 
 class LoginDatabase {
@@ -13,7 +15,10 @@ class LoginDatabase {
         });
 
         this.connection.connect((err) => {
-            if (err) throw err;
+            if (err) {
+                console.error('Error connecting to the database:', err);
+                throw err;
+            }
             console.log('Connected to Budget database!');
         });
     }
@@ -23,24 +28,28 @@ class LoginDatabase {
             const response = await new Promise((resolve, reject) => {
                 const query = "SELECT * FROM users;";
                 this.connection.query(query, (err, results) => {
-                    if (err) reject(new Error(err.message));
+                    if (err) {
+                        console.error('Error fetching users:', err);
+                        return reject(new Error(err.message));
+                    }
                     resolve(results);
-                })
-            })
+                });
+            });
             return response;
-        }
-        catch (err) {
-            console.log(err);
+        } catch (err) {
+            console.error(err);
+            throw err; // Re-throw the error to handle it in the caller
         }
     }
 
     async logIntoSystem(username, password) {
         try {
-            console.log(username, password);
+            console.log('Attempting login for user:', username);
             const user = await new Promise((resolve, reject) => {
                 const query = 'SELECT * FROM users WHERE userName = ?';
-                db.query(query, [username], (err, results) => {
+                this.connection.query(query, [username], (err, results) => {
                     if (err) {
+                        console.error('Error in login query:', err);
                         return reject(new Error('Error in login'));
                     }
                     if (results.length === 0) {
@@ -49,7 +58,7 @@ class LoginDatabase {
                     resolve(results[0]);
                 });
             });
-    
+
             const isPasswordValid = bcrypt.compareSync(password, user.password);
             if (isPasswordValid) {
                 return { message: 'Login successful' };
@@ -57,11 +66,10 @@ class LoginDatabase {
                 throw new Error('Invalid password');
             }
         } catch (err) {
-            console.log(err);
-            throw err;
+            console.error('Login error:', err.message);
+            throw new Error('Login failed'); // Generic error message for the caller
         }
     }
-    
-
 }
+
 module.exports = new LoginDatabase();

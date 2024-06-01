@@ -200,4 +200,13 @@ router.post('/login/sysLogin', (req, res) => {
             .catch(err => console.log(err));
 });
 
+router.get('/login/getUsers', (req, res) => {
+    const result = loginDB.getUsers();
+
+    result
+        .then(data => res.json({ data: data }))
+        .catch(err => console.log(err));
+}
+);
+
 module.exports = router;
