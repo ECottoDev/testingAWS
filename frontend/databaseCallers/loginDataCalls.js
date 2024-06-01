@@ -43,3 +43,17 @@ export async function getUsers() {
         return null;
     }
 }
+
+export async function getUsersididi() {
+    try {
+        const response = await fetch(`http://${host}:${port}/login/getUsers`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+       console.log(data.data);
+    } catch (error) {
+        console.error('Error:', error);
+        return null;
+    }
+}
