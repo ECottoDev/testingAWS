@@ -4,6 +4,8 @@ const router = express.Router();
 const resumeDB = require('./resumeDatabase');
 const budgetDB = require('./budgetDatabase');
 const loginDB = require('./loginDatabase');
+const bodyParser = require('body-parser');
+router.use(bodyParser.json());
 
 //Resume Database Routes
 //Education database connections
@@ -183,5 +185,16 @@ router.get('/login/users',  async (req, res) => {
         .catch(err => console.log(err));
 }
 );
+router.post('/login/system', async (req, res) => {
+    console.log('Login request received');
+    const { username, password } = req.body;
+    console.log('Login request received from:', username);
+    try {
+        const result = await logIntoSystem(username, password);
+        res.send(result);
+    } catch (error) {
+        res.status(400).send({ error: error.message });
+    }
+});
 
 module.exports = router;

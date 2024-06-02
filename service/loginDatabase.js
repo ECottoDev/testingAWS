@@ -43,5 +43,34 @@ class LoginDatabase {
             console.log(err);
         }
     }
+    async logIntoSystem(username, password) {
+        try {
+            console.log('Attempting login for user:', username);
+            const user = await new Promise((resolve, reject) => {
+                const query = 'SELECT * FROM users WHERE userName = ?';
+                this.connection.query(query, [username], (err, results) => {
+                    if (err) {
+                        console.error('Error in login query:', err);
+                        return reject(new Error('Error in login'));
+                    }
+                    if (results.length === 0) {
+                        return reject(new Error('User not found'));
+                    }
+                    resolve(results[0]);
+                });
+            });
+    
+            // Compare passwords (assuming passwords are stored in plaintext, not recommended)
+            if (password === user.password) {
+                return { message: 'Login successful', user: user }; // Return user data along with the success message
+            } else {
+                throw new Error('Invalid password');
+            }
+        } catch (err) {
+            console.error('Login error:', err);
+            throw err; // Re-throw the error to handle it in the caller
+        }
+    }
+    
 }
 module.exports = new LoginDatabase();

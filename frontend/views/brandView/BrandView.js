@@ -7,8 +7,8 @@
 * @version 2024-February-08 initial version
 */
 
-import { addClasses, addEvent, appendChildren, createButton, createElementContainer, createHeadingText } from "../../../helpers/basicElements.js";
-import { getUsers } from "../../databaseCallers/loginDataCalls.js";
+import { addClasses, addEvent, appendChildren, createButton, createElementContainer, createHeadingText, createInputBar } from "../../../helpers/basicElements.js";
+import { getUsers, systemLogin } from "../../databaseCallers/loginDataCalls.js";
 
 
 export class BrandView {
@@ -23,12 +23,18 @@ export class BrandView {
     setView() {
         appendChildren(this.view, [
             addClasses(createHeadingText('Poly Brand', { bold: true }), 'brandView_heading'),
+            this.user = createInputBar({ placeholder: 'User' }),
+            this.password = createInputBar({type: 'password', placeholder: 'Password' }),
             addEvent(addClasses(createButton('get users'), 'brandView_addButton','brandView_button'), ()=>{this.getUsers()}),
+            addEvent(addClasses(createButton('test user'), 'brandView_addButton','brandView_button'), ()=>{this.testUsers()}),
             
         ])
     }
 
     async getUsers(){
         console.log(await getUsers())
+    }
+    async testUsers(){
+        console.log(await systemLogin(this.user.value, this.password.value))
     }
 }
