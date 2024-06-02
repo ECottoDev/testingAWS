@@ -3,9 +3,6 @@ const express = require('express');
 const router = express.Router();
 const resumeDB = require('./resumeDatabase');
 const budgetDB = require('./budgetDatabase');
-const loginDB = require('./loginDatabase');
-const bodyParser = require('body-parser');
-const bcrypt = require('bcrypt');
 
 //Resume Database Routes
 //Education database connections
@@ -159,57 +156,23 @@ router.patch('/budget/updateCard', (request, response) => {
         .catch(err => console.log(err));
 });
 
-// router.patch('/updateBudget', (request, response) => {
-//     const { amount } = request.body;
-//     const result = budgetDB.updateBudget(amount);
-
-//     result
-//         .then(data => response.json({ success: data }))
-//         .catch(err => console.log(err));
-// });
-
-// router.patch('/updateBank', (request, response) => {
-//     const { amount } = request.body;
-//     const result = budgetDB.updateBank(amount);
-
-//     result
-//         .then(data => response.json({ success: data }))
-//         .catch(err => console.log(err));
-// });
-
-//register 
-router.post('/login/register', (req, res) => {
-    const { username, email, password } = req.body;
-    const hashedPassword = bcrypt.hashSync(password, 10);
-    const user = { username, email, password: hashedPassword };
-
-    db.query('INSERT INTO users SET ?', user, (err, result) => {
-        if (err) {
-            res.status(400).send('Error in registration');
-        } else {
-            res.status(200).send('User registered successfully');
-        }
-    });
-});
-
-router.post('/login/sysLogin', async (req, res) => {
-        const { user, password } = req.body;
-        try {
-            const result = await loginDB.logIntoSystem(user, password);
-            res.json({ success: true, result });
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({ success: false, error: error.message });
-        }
-});
-
-router.get('/login/getUsers', async (req, res) => {
-    const result = loginDB.getUsers();
+router.patch('/updateBudget', (request, response) => {
+    const { amount } = request.body;
+    const result = budgetDB.updateBudget(amount);
 
     result
-        .then(data => res.json({ data: data }))
+        .then(data => response.json({ success: data }))
         .catch(err => console.log(err));
-}
-);
+});
+
+router.patch('/updateBank', (request, response) => {
+    const { amount } = request.body;
+    const result = budgetDB.updateBank(amount);
+
+    result
+        .then(data => response.json({ success: data }))
+        .catch(err => console.log(err));
+});
+
 
 module.exports = router;

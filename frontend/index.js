@@ -3,8 +3,8 @@ import { addClasses, addEvent, appendChildren, createButton, createElementContai
 import { routes } from "../helpers/router.js";
 import { DisplayBox } from "./components/displayBox/DisplayBox.js";
 import { NavigationBar } from "./containers/navigationBar/NavigationBar.js";
+import { BrandView } from "./views/brandView/BrandView.js";
 import { BudgetView } from "./views/budgetView/BudgetView.js";
-import { LoginView } from "./views/loginView/LoginView.js";
 import { ResumeView } from "./views/resumeView/ResumeView.js";
 
 
@@ -50,7 +50,7 @@ export class Index {
         this.navigation = {
             [routes.HOME_VIEW]: () => new ResumeView(this.appProps).view,
             [routes.BUDGET_VIEW]: () => new BudgetView(this.appProps).view,
-            [routes.LOGIN_VIEW]: () => new LoginView(this.appProps).view, 
+            [routes.POLY_VIEW]: () => new BrandView(this.appProps).view, 
 	}
     }
     /**

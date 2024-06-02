@@ -1,6 +1,6 @@
 // frontend.js
 const port = 5506;
-const host = 'localhost';
+const host = '44.193.226.223'
 export async function getBudgetData() {
     try {
         const response = await fetch(`http://${host}:${port}/budget/getAllCardData`);
