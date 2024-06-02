@@ -192,15 +192,18 @@ router.post('/login/register', (req, res) => {
     });
 });
 
-router.post('/login/sysLogin', (req, res) => {
+router.post('/login/sysLogin', async (req, res) => {
         const { user, password } = req.body;
-        const result = loginDB.logIntoSystem(user, password);
-        result
-            .then(data => res.json({ success: true }))
-            .catch(err => console.log(err));
+        try {
+            const result = await loginDB.logIntoSystem(user, password);
+            res.json({ success: true, result });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ success: false, error: error.message });
+        }
 });
 
-router.get('/login/getUsers', (req, res) => {
+router.get('/login/getUsers', async (req, res) => {
     const result = loginDB.getUsers();
 
     result

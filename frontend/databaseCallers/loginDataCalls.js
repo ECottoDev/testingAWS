@@ -1,5 +1,5 @@
 const port = 5506;
-const host = '44.193.226.223';
+const host = 'localhost';
 
 export async function systemLogin(user, password) {
     try {

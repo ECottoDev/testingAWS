@@ -1,18 +1,20 @@
 const mysql = require('mysql');
 const dotenv = require('dotenv');
-const bcrypt = require('bcrypt'); // Ensure bcrypt is required
+const bcrypt = require('bcrypt');
 
 dotenv.config();
 
 class LoginDatabase {
     constructor() {
-        this.connection = mysql.createConnection({
+        const connectionConfig = {
             host: process.env.HOST,
             user: process.env.USERNAME,
             password: process.env.PASSWORD,
             database: process.env.DATABASE,
             port: process.env.DB_PORT
-        });
+        };
+        
+        this.connection = mysql.createConnection(connectionConfig);
 
         this.connection.connect((err) => {
             if (err) {
@@ -67,7 +69,7 @@ class LoginDatabase {
             }
         } catch (err) {
             console.error('Login error:', err.message);
-            throw new Error('Login failed'); // Generic error message for the caller
+            throw new Error('Login failed');
         }
     }
 }
