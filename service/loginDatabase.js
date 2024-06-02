@@ -8,6 +8,7 @@
 */
 const mysql = require('mysql');
 const dotenv = require('dotenv');
+const bcrypt = require('bcrypt');
 dotenv.config();
 
 class LoginDatabase {
@@ -43,5 +44,37 @@ class LoginDatabase {
             console.log(err);
         }
     }
+
+    async logIntoSystem(username, password) {
+        console.log('Attempting login for user:', username);
+        try {
+            console.log('Attempting login for user:', username);
+            const user = await new Promise((resolve, reject) => {
+                const query = 'SELECT * FROM users WHERE userName = ?';
+                this.connection.query(query, [username], (err, results) => {
+                    if (err) {
+                        console.error('Error in login query:', err);
+                        reject(new Error('Error in login'));
+                    } else if (results.length === 0) {
+                        reject(new Error('User not found'));
+                    } else {
+                        resolve(results[0]);
+                    }
+                });
+            });
+    
+            //const isPasswordValid = bcrypt.compareSync(password, user.password);
+            if (password === user.password) {
+                return { message: 'Login successful', user: user }; // Return user data along with the success message
+            } else {
+                throw new Error('Invalid password');
+            }
+        } catch (err) {
+            console.error('Login error:', err);
+            throw err; // Re-throw the error to handle it in the caller
+        }
+    }
+    
+    
 }
 module.exports = new LoginDatabase();

@@ -13,3 +13,26 @@ export async function getUsers() {
         return null;
     }
 }
+
+
+export async function systemLogin(username, password) {
+    console.log('Attempting to login for user:', username);
+    try {
+        const response = await fetch(`http://${host}:${port}/login/system`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username: username, password: password })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to login');
+        }
+
+        return response.json();
+    } catch (error) {
+        console.error('Error logging in:', error);
+        throw error;
+    }
+}
