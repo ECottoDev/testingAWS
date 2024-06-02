@@ -184,12 +184,4 @@ router.get('/login/users',  async (req, res) => {
 }
 );
 
-router.post('/login/system', (req, res) => {
-    const { username, password } = req.body;
-    const result = loginDB.logIntoSystem(username, password);
-    result
-        .then(data => res.json({ success: true }))
-        .catch(err => console.log(err));
-});
-
 module.exports = router;
