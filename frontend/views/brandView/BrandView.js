@@ -7,7 +7,8 @@
 * @version 2024-February-08 initial version
 */
 
-import { addClasses, appendChildren, createElementContainer, createHeadingText } from "../../../helpers/basicElements.js";
+import { addClasses, addEvent, appendChildren, createButton, createElementContainer, createHeadingText } from "../../../helpers/basicElements.js";
+import { getUsers } from "../../databaseCallers/loginDataCalls.js";
 
 
 export class BrandView {
@@ -22,7 +23,12 @@ export class BrandView {
     setView() {
         appendChildren(this.view, [
             addClasses(createHeadingText('Poly Brand', { bold: true }), 'brandView_heading'),
+            addEvent(addClasses(createButton('get users'), 'brandView_addButton','brandView_button'), ()=>{this.getUsers()}),
             
         ])
+    }
+
+    async getUsers(){
+        console.log(await getUsers())
     }
 }

@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const resumeDB = require('./resumeDatabase');
 const budgetDB = require('./budgetDatabase');
+const loginDB = require('./loginDatabase');
 
 //Resume Database Routes
 //Education database connections
@@ -174,5 +175,13 @@ router.patch('/updateBank', (request, response) => {
         .catch(err => console.log(err));
 });
 
+router.get('/login/users',  async (req, res) => {
+    const result = loginDB.getUsers();
+
+    result
+        .then(data => res.json({ data: data }))
+        .catch(err => console.log(err));
+}
+);
 
 module.exports = router;
