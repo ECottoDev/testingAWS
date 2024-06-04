@@ -24,7 +24,7 @@ class LoginDatabase {
 
         this.connection.connect((err) => {
             if (err) throw err;
-            console.log('Connected to Budget database!');
+            console.log('Connected to login database!');
         });
     }
 
@@ -44,8 +44,8 @@ class LoginDatabase {
         }
     }
     async logIntoSystem(username, password) {
-        try {
-            console.log('Attempting login for user:', username);
+        console.log('Attempting login for user:', username)
+	    try {
             const user = await new Promise((resolve, reject) => {
                 const query = 'SELECT * FROM users WHERE userName = ?';
                 this.connection.query(query, [username], (err, results) => {
@@ -62,7 +62,7 @@ class LoginDatabase {
     
             // Compare passwords (assuming passwords are stored in plaintext, not recommended)
             if (password === user.password) {
-                return { message: 'Login successful', user: user }; // Return user data along with the success message
+                return { message: 'Login successful'}; // Return user data along with the success message
             } else {
                 throw new Error('Invalid password');
             }

@@ -186,11 +186,12 @@ router.get('/login/users',  async (req, res) => {
 }
 );
 router.post('/login/system', async (req, res) => {
-    console.log('Login request received');
     const { username, password } = req.body;
-    console.log('Login request received from:', username);
     try {
-        const result = await logIntoSystem(username, password);
+	    console.log(username, password);
+        const result = await loginDB.logIntoSystem(username, password);
+	    console.log('done with log into system routes.js');
+	    console.log(result);
         res.send(result);
     } catch (error) {
         res.status(400).send({ error: error.message });
