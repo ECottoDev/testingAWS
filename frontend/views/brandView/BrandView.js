@@ -7,7 +7,7 @@
 * @version 2024-February-08 initial version
 */
 
-import { addClasses, addEvent, appendChildren, createButton, createElementContainer, createHeadingText, createInputBar } from "../../../helpers/basicElements.js";
+import { addClasses, addEvent, appendChildren, createButton, createElementContainer, createHeadingText, createInputBar, createPillBox } from "../../../helpers/basicElements.js";
 import { getUsers, systemLogin } from "../../databaseCallers/loginDataCalls.js";
 
 
@@ -35,6 +35,6 @@ export class BrandView {
         console.log(await getUsers())
     }
     async testUsers(){
-        console.log(await systemLogin(this.user.value, this.password.value))
+        console.log(await systemLogin(this.user.value, this.password.value, ()=>{const close = this.parentProps.displayBox(appendChildren(createPillBox(), [createHeadingText('Login Successfull'), addEvent(createButton('close'),()=>close())]))}, ()=>{const close = this.parentProps.displayBox(appendChildren(createPillBox(), [createHeadingText('Login failed. Please check user and password and try again.'), addEvent(createButton('close'),()=>close())]))}))
     }
 }

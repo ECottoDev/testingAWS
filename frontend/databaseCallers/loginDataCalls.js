@@ -14,7 +14,7 @@ export async function getUsers() {
     }
 }
 
-export async function systemLogin(username, password) {
+export async function systemLogin(username, password, success = () => {}, fail = () => {}) {
     try {
         const response = await fetch(`http://${host}:${port}/login/system`, {
             method: 'POST',
@@ -24,9 +24,10 @@ export async function systemLogin(username, password) {
             body: JSON.stringify({ username: username, password: password })
         });
         if (!response.ok) {
+            fail();
             throw new Error('Failed to login');
         } else {
-
+        success();
         return response.json();
 	}
     } catch (error) {
