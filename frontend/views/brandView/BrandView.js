@@ -25,7 +25,7 @@ export class BrandView {
             addClasses(createHeadingText('Poly Brand', { bold: true }), 'brandView_heading'),
             this.user = createInputBar({ placeholder: 'User' }),
             this.password = createInputBar({type: 'password', placeholder: 'Password' }),
-            addEvent(addClasses(createButton('get users'), 'brandView_addButton','brandView_button'), ()=>{this.getUsers()}),
+            // addEvent(addClasses(createButton('get users'), 'brandView_addButton','brandView_button'), ()=>{this.getUsers()}),
             addEvent(addClasses(createButton('test user'), 'brandView_addButton','brandView_button'), ()=>{this.testUsers()}),
             
         ])
