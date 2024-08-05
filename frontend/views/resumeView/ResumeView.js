@@ -20,7 +20,7 @@ export class ResumeView {
         this.fetch();
     }
     async fetch() {
-        this.educationData = await getEducationData();
+        this.educationData =  await getEducationData();
         this.educationData.sort(sortArrayOfObj('-schoolYear'));
         this.experienceData = await getExperienceData();
         this.experienceData.sort(sortArrayOfObj('-id'));
@@ -29,7 +29,8 @@ export class ResumeView {
     setView() {
         appendChildren(this.view, [
             appendChildren(addClasses(createElementContainer(), 'resumeView_educationHistory'), [
-                new EducationHistory(this.parentProps).view
+		    //createHeadingText('sorry cors failed'),
+		    new EducationHistory(this.parentProps).view
             ]),
             appendChildren(addClasses(createElementContainer(), 'resumeView_workHistory'), [
                 new WorkExperience(this.parentProps).view

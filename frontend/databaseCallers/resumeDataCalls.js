@@ -1,7 +1,9 @@
 // Purpose: This file contains all the data calls to the backend server.
 //eduction data
-const port = 5506
-const host = 'https://44.193.226.223'
+const port = 5507
+const host = 'https://luxprogramming.com'
+//const host = 'https://44.193.226.223'
+//const host = 'http://localhost' 
 
 // Function to get education data
 export async function getEducationData() {

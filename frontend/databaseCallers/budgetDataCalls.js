@@ -1,9 +1,10 @@
 // frontend.js
-const port = 5506;
-const host = '44.193.226.223'
+const port = 5507;
+//const host = '44.193.226.223'
+const host = 'luxprogramming.com'
 export async function getBudgetData() {
     try {
-        const response = await fetch(`http://${host}:${port}/budget/getAllCardData`);
+        const response = await fetch(`https://${host}:${port}/budget/getAllCardData`);
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }

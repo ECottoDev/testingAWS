@@ -1,0 +1,27 @@
+[Unit]
+Description=resume
+Documentation=https://example.com
+After=network.target
+
+[Service]
+Environment=PORT=5506
+Environment=PORTSSL=5507
+Environment=USERNAME=luxian
+Environment=PASSWORD=Lux1037
+Environment=DATABASE=SuperProject
+Environment=DB_PORT=3306
+Environment=HOST=localhost
+
+
+Type=simple
+TimeoutSec=0
+User=ubuntu
+ExecStart=/usr/bin/node /var/www/html/testingAWS/main.js
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=resume
+
+[Install]
+WantedBy=multi-user.target
+
